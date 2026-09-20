@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ruletreerank"
+version = "0.1.0"
+description = "Interpretable Learning-to-Rank via rule-based grouping and local instance-based refinement"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Andrea Iommi", email = "andrea.iommi741@gmail.com" }]
+keywords = ["learning-to-rank", "interpretability", "ranking", "decision-tree", "xai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.26,<3",
+    "pandas>=2,<3",
+    # 1.7 removed sklearn.tree._criterion.FriedmanMSE, which RuleTree imports
+    "scikit-learn>=1.5,<1.7",
+    "joblib>=1.3,<2",
+    "tqdm>=4.66,<5",
+    "matplotlib>=3.8,<4",
+    "seaborn>=0.13,<0.14",
+    # 2026.6 renamed RuleTree's apply() internals (no _resolve_data_input before it)
+    "RuleTree>=2026.4.9.93533,<2026.6",
+    # imported by RuleTree 2026.4.x but missing from its metadata
+    "line-profiler-pycharm>=1.2,<2",
+    "statsmodels",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/jacons/RuleTreeRank"
+Issues = "https://github.com/jacons/RuleTreeRank/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]

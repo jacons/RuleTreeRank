@@ -1,14 +1,12 @@
 # RuleTreeRank
 
 <p align="center">
-  <img src="imgs/logo.png" alt="RuleTreeRank logo" width="360">
+  <img src="https://raw.githubusercontent.com/jacons/RuleTreeRank/main/imgs/logo.png" alt="RuleTreeRank logo" width="360">
 </p>
 
 RuleTreeRank (RTR) is an interpretable Learning-to-Rank framework that models ranking as a two-stage process: it first groups items with a shallow rule tree, then refines the score locally through instance-based comparisons.
 
 RTR is designed for query-supported ranking problems. In candidate screening, for example, a query is a job offer and each item is a candidate. The same candidate can be relevant for one job and irrelevant for another, so the final ranking is induced within each query by sorting the RTR scores in descending order.
-
-A visual explanation of the method is available in [imgs/explanation.pdf](imgs/explanation.pdf).
 
 ## What RTR Does
 
@@ -20,23 +18,27 @@ The package also exposes `MixedRTR`, a query-aware variant that trains the local
 
 ## Installation
 
-RTR currently ships as source code in this repository.
-
 ```bash
-git clone <repository-url>
-cd RuleTreeRank-DS2026
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-export PYTHONPATH="$PWD:$PYTHONPATH"
+pip install ruletreerank
 ```
 
-Check that the local imports work:
+Latest development version:
 
 ```bash
-python -c "from ruletreerank import RuleTreeRank; print('RTR import ok')"
+pip install git+https://github.com/jacons/RuleTreeRank.git
 ```
+
+From a clone, for development:
+
+```bash
+git clone https://github.com/jacons/RuleTreeRank.git
+cd RuleTreeRank
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+pytest
+```
+
+Requires Python 3.10 or newer.
 
 ## Minimal Usage
 
@@ -108,11 +110,10 @@ The final ranking for a query is obtained by sorting items by $f(\mathbf{x})$ in
 
 - [examples/min_example.ipynb](examples/min_example.ipynb): minimal RTR example on a scikit-learn dataset, with tables and plots showing the double-stage behaviour.
 - [examples/synthetic_ranking_task.ipynb](examples/synthetic_ranking_task.ipynb): synthetic ranking task with a hidden linear scoring function and relevance labels induced by ranking.
-- [imgs/explanation.pdf](imgs/explanation.pdf): compact visual explanation of the RTR pipeline.
 
 ## Repository Layout
 
-- `ruletreerank/`: core RTR, MixedRTR, pairwise distance tree, and fast k-NN components.
-- `ltr_utility/`: shared interfaces, dataset utilities, query splitting, clustering, and explanation helpers.
+- `src/ruletreerank/`: core RTR, MixedRTR, pairwise distance tree, and fast k-NN components.
+- `src/ltr_utility/`: shared interfaces, dataset utilities, query splitting, clustering, and explanation helpers.
 - `examples/`: executable notebooks for minimal and synthetic ranking workflows.
-- `experiments/`: experiment scripts and evaluation notebooks.
+- `tests/`: smoke test covering the two-stage fit/predict path.

@@ -1,9 +1,11 @@
 /datasets/
+/experiments/
 .venv/
+.idea/
 __pycache__/
 *.py[cod]
+*.egg-info/
+build/
+dist/
 .DS_Store
 .ipynb_checkpoints/
-/listnet/
-/explainability/
-/experiments/
