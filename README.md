@@ -4,6 +4,13 @@
   <img src="https://raw.githubusercontent.com/jacons/RuleTreeRank/main/imgs/logo.png" alt="RuleTreeRank logo" width="360">
 </p>
 
+<p align="center">
+  <a href="https://pypi.org/project/ruletreerank/"><img src="https://img.shields.io/pypi/v/ruletreerank" alt="PyPI"></a>
+  <a href="https://pypi.org/project/ruletreerank/"><img src="https://img.shields.io/pypi/pyversions/ruletreerank" alt="Python versions"></a>
+  <a href="https://github.com/jacons/RuleTreeRank/actions/workflows/ci.yml"><img src="https://github.com/jacons/RuleTreeRank/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/pypi/l/ruletreerank" alt="License"></a>
+</p>
+
 RuleTreeRank (RTR) is an interpretable Learning-to-Rank framework that models ranking as a two-stage process: it first groups items with a shallow rule tree, then refines the score locally through instance-based comparisons.
 
 RTR is designed for query-supported ranking problems. In candidate screening, for example, a query is a job offer and each item is a candidate. The same candidate can be relevant for one job and irrelevant for another, so the final ranking is induced within each query by sorting the RTR scores in descending order.
